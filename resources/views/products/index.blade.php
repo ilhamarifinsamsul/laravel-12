@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <a href="{{ route('products.create') }}" class="btn btn-md btn-success mb-3">Add Product</a>
                         <table class="table table-bordered">
-                            <thead>
+                            <thead class="text-center">
                                 <tr>
                                     <th scope="col">IMAGE</th>
                                     <th scope="col">TITLE</th>
@@ -40,8 +40,8 @@
                                         <td>{{ $product->stock }}</td>
                                         <td class="text-center">
                                             <form onsubmit="return confirm('Apakah Anda Yakin?');" action="{{ route('products.destroy', $product->id) }}" method="POST"></form>
-                                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-dark">SHOW</a>
-                                            <a href="{{ route('products.edit') }}" class="btn btn-sm btn-primary">EDIT</a>
+                                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-secondary">SHOW</a>
+                                             <a href="{{--{{ route('products.edit') }}--}}" class="btn btn-sm btn-primary">EDIT</a> 
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
