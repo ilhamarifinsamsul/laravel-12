@@ -22,9 +22,10 @@ class ProductController extends Controller
     public function index() : View {
         // get all data product
         $products = Product::latest()->paginate(10);
+        $title = 'Data Product';
 
         // render view wit product
-        return view('products.index', compact('products'));
+        return view('products.index', compact('products', 'title'));
     }
 
     /**
@@ -33,7 +34,8 @@ class ProductController extends Controller
     * @return view
     */
     public function create() : View {
-        return view('products.create');
+        $title = 'Add New Product';
+        return view('products.create', compact('title'));
     }
 
     /**
