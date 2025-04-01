@@ -23,11 +23,15 @@ class ProductController extends Controller
     */
     public function index() : View {
         // get all data product
-        $products = Product::latest()->paginate(10);
         $title = 'Data Product';
+        $search = request()->query('search');
+
+        $products = Product::when($search, function($query) use ($search){
+            $query->where('title', 'like', '%'.$search.'%');
+        })->latest()->paginate(10)->appends(['search' => $search]);
 
         // render view wit product
-        return view('products.index', compact('products', 'title'));
+        return view('products.index', compact('products', 'title', 'search'));
     }
 
     /**

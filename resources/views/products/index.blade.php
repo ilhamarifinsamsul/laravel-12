@@ -19,8 +19,20 @@
                 </div>
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <a href="{{ route('products.create') }}" class="btn btn-md btn-success mb-3">ADD PRODUCT</a>
-                        <table class="table table-bordered">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <a href="{{ route('products.create') }}" class="btn btn-md btn-success mb-3">ADD PRODUCT</a>
+                            </div>
+                            <div class="col-md-6">
+                                <form action="{{ route('products.index') }}" method="GET">
+                                    <div class="input-group">
+                                        <input type="text" name="search" class="form-control" placeholder="Cari Produk..." value="{{ $search }}">
+                                        <button type="submit" class="btn btn-sm btn-primary"><i class="bi bi-search"></i>Cari</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div class="table-responsive">
+                        <table class="table table-striped table-hover table-bordered">
                             <thead class="text-center">
                                 <tr>
                                     <th scope="col">IMAGE</th>
@@ -56,6 +68,9 @@
                                 @endforelse
                             </tbody>
                         </table>
+                    </div>
+                    {{-- Pagination --}}
+                    <div class="d-flex justify-content-center mt-2">
                         {{ $products->links() }}
                     </div>
                 </div>
