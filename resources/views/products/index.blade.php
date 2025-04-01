@@ -31,47 +31,49 @@
                                     </div>
                                 </form>
                             </div>
+                        </div>    
                         </div class="table-responsive">
-                        <table class="table table-striped table-hover table-bordered">
-                            <thead class="text-center">
-                                <tr>
-                                    <th scope="col">IMAGE</th>
-                                    <th scope="col">TITLE</th>
-                                    <th scope="col">PRICE</th>
-                                    <th scope="col">STOCK</th>
-                                    <th scope="col" style="width: 20%">ACTIONS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($products as $product)
+                            <table class="table table-striped table-hover table-bordered">
+                                <thead class="text-center">
                                     <tr>
-                                        <td class="text-center">
-                                            <img src="{{ asset('/storage/products/'.$product->image) }}" class="rounded" style="width: 150px">
-                                        </td>
-                                        <td>{{ $product->title }}</td>
-                                        <td>{{ "Rp " . number_format($product->price,2,',','.') }}</td>
-                                        <td>{{ $product->stock }}</td>
-                                        <td class="text-center">
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                                <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-secondary">SHOW</a>
-                                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-primary">EDIT</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                            </form>
-                                        </td>
+                                        <th scope="col">IMAGE</th>
+                                        <th scope="col">TITLE</th>
+                                        <th scope="col">PRICE</th>
+                                        <th scope="col">STOCK</th>
+                                        <th scope="col" style="width: 20%">ACTIONS</th>
                                     </tr>
-                                @empty
-                                    <div class="alert alert-danger">
-                                        Data Products belum ada.
-                                    </div>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                    {{-- Pagination --}}
-                    <div class="d-flex justify-content-center mt-2">
-                        {{ $products->links('pagination::bootstrap-5') }}
+                                </thead>
+                                <tbody>
+                                    @forelse ($products as $product)
+                                        <tr>
+                                            <td class="text-center">
+                                                <img src="{{ asset('/storage/products/'.$product->image) }}" class="rounded" style="width: 150px">
+                                            </td>
+                                            <td>{{ $product->title }}</td>
+                                            <td>{{ "Rp " . number_format($product->price,2,',','.') }}</td>
+                                            <td>{{ $product->stock }}</td>
+                                            <td class="text-center">
+                                                <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('products.destroy', $product->id) }}" method="POST">
+                                                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-secondary">SHOW</a>
+                                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <div class="alert alert-danger">
+                                            Data Products belum ada.
+                                        </div>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                            {{-- Pagination --}}
+                            <div class="d-flex justify-content-center mt-2">
+                                {{ $products->links('pagination::bootstrap-5') }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
