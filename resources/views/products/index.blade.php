@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $title }}</title>
+    <title>Data Product</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background: lightgray">
@@ -20,15 +20,21 @@
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
                         <div class="row mb-4">
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <a href="{{ route('products.create') }}" class="btn btn-md btn-success mb-3">ADD PRODUCT</a>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <form action="{{ route('products.index') }}" method="GET">
                                     <div class="input-group">
                                         <input type="text" name="search" class="form-control" placeholder="Cari Produk..." value="{{ $search }}">
                                         <button type="submit" class="btn btn-sm btn-primary"><i class="bi bi-search"></i>Cari</button>
                                     </div>
+                                </form>
+                            </div>
+                            <div class="col-md-2">
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Logout</button>
                                 </form>
                             </div>
                         </div>    
